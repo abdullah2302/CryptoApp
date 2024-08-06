@@ -7,7 +7,7 @@ import { faFacebookF, faTwitter, faGoogle, faInstagram, faLinkedin, faGithub } f
 const Footer = () => {
   return (
     <footer className="text-center bg-body-tertiary">
-      <div className="container pt-4">
+      <div className="container pt-4" id='footerContainer'>
         <section className="mb-4">
           <Link
             data-mdb-ripple-init

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from './Footer';
 
+
 export default function Cryptocurrency(props) {
     const [search, setSearch] = useState("");
     const [currency, setCurrency] = useState([]);
     const [currencyType, setCurrencyType] = useState('USD');
-    const [conversionRate, setConversionRate] = useState(0);
+    const [conversionRate, setConversionRate] = useState(1);
 
     useEffect(() => {
         axios.get(`https://coinpaprika1.p.rapidapi.com/tickers?limit=${props.LIMIT}`, {
@@ -15,11 +16,10 @@ export default function Cryptocurrency(props) {
                 'x-rapidapi-host': 'coinpaprika1.p.rapidapi.com'
             }
         })
-            .then(res => {
-                setCurrency(res.data);
-                console.log(res);
-            })
-            .catch(err => console.log(err));
+        .then(res => {
+            setCurrency(res.data);
+        })
+        .catch(err => console.log(err));
     }, [props.LIMIT]);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function Cryptocurrency(props) {
 
     const toggleCurrency = () => {
         setCurrencyType(types => (types === 'USD' ? 'PKR' : 'USD'));
-    }
+    };
 
     const filteredCurrency = currency.filter(data =>
         data.name.toLowerCase().includes(search.toLowerCase())
@@ -44,14 +44,15 @@ export default function Cryptocurrency(props) {
         <>
         <div className="mainContainer">
             <div className="container">
-                <h1>Crypto Currency</h1>
+            <h1 style={{ color: 'Green' }}>Crypto Currency</h1>
                 <input
                     type="text"
-                    className="search-bar"
+                    className="search-bar mx-3"
                     placeholder="Search..."
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                 />
+              
                 <button onClick={toggleCurrency}>
                     Switch to {currencyType === 'USD' ? 'PKR' : 'USD'}
                 </button>
@@ -64,8 +65,8 @@ export default function Cryptocurrency(props) {
                                 <p>Rank: {data.rank}</p>
                                 <p>Max Supply: {data.max_supply}</p>
                                 <p>Total Supply: {data.total_supply}</p>
-                                <p>Price: {currencyType === 'USD' ? `$${(data.quotes.USD.price).toFixed(2)}` : `Rs${(data.quotes.USD.price * conversionRate).toFixed(2)}`}</p>
-                                <p>Volume (24hrs): {currencyType === 'USD' ? `$${(data.quotes.USD.volume_24h).toFixed(2)}` : `Rs${(data.quotes.USD.volume_24h * conversionRate).toFixed(2)}`}</p>
+                                <p> <b>Price:</b> {currencyType === 'USD' ? `$${data.quotes.USD.price.toFixed(2)}` : `Rs${(data.quotes.USD.price * conversionRate).toFixed(2)}`}</p>
+                                <p>Volume (24hrs): {currencyType === 'USD' ? `$${data.quotes.USD.volume_24h.toFixed(2)}` : `Rs${(data.quotes.USD.volume_24h * conversionRate).toFixed(2)}`}</p>
                                 <p>Last Update: {data.last_updated}</p>
                                 <p>Market Cap: {currencyType === 'USD' ? `$${data.quotes.USD.market_cap}` : `Rs${(data.quotes.USD.market_cap * conversionRate).toFixed(2)}`}</p>
                             </div>
@@ -74,7 +75,8 @@ export default function Cryptocurrency(props) {
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer />
         </>
     );
 }
+
