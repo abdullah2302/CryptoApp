@@ -31,7 +31,8 @@ function App() {
                 onChange={handleLimit}
                 placeholder="Limit"
                 className="limit-input"
-              />
+            
+            />
               <Cryptocurrency LIMIT={limit} />
             </div>
           } />

@@ -7,7 +7,7 @@ import { faFacebookF, faTwitter, faGoogle, faInstagram, faLinkedin, faGithub } f
 const Footer = () => {
   return (
     <footer className="text-center bg-body-tertiary">
-      <div className="container pt-4">
+      <div className="container pt-4" id='footerContainer'>
         <section className="mb-4">
           <Link
             data-mdb-ripple-init
@@ -69,12 +69,14 @@ const Footer = () => {
             <FontAwesomeIcon icon={faGithub} />
           </Link>
         </section>
+        
+      <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © 2024 Copyright: 
+        <Link className="text-body" to="https://cryptocurrency-45880.web.app/"> 
+        CryptoTracker</Link>
+      </div>
       </div>
 
-      <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2020 Copyright:
-        <Link className="text-body" to="https://cryptocurrency-45880.web.app/">Website</Link>
-      </div>
     </footer>
   );
 };

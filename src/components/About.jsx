@@ -1,7 +1,9 @@
 import React from 'react';
-
+import Footer from './Footer';
+import '../App.css';
 export default function About() {
     return (
+        <>
         <div className="about-container">
             <h1>About Cryptocurrency Tracker</h1>
             <p>
@@ -40,5 +42,7 @@ export default function About() {
                 Thank you for using our Cryptocurrency Tracker! We are continuously working to improve the application and add new features. Your feedback is valuable to us, so feel free to reach out with any suggestions or comments.
             </p>
         </div>
+        <Footer/>
+        </>
     );
 }
