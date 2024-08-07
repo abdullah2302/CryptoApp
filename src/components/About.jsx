@@ -41,8 +41,9 @@ export default function About() {
             <p>
                 Thank you for using our Cryptocurrency Tracker! We are continuously working to improve the application and add new features. Your feedback is valuable to us, so feel free to reach out with any suggestions or comments.
             </p>
+            <Footer/>
         </div>
-        <Footer/>
+      
         </>
     );
 }
